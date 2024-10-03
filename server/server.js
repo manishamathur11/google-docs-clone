@@ -1,5 +1,11 @@
 const mongoose = require("mongoose")
 const Document = require("./Document")
+const express = require("express");
+const http = require("http");
+const cors = require("cors");
+const { Server } = require("socket.io");
+const app = express();
+const server = http.createServer(app);
 
 mongoose.connect(
   "mongodb+srv://manisha:1234@cluster0.xvjx3my.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
@@ -11,12 +17,30 @@ mongoose.connect(
   }
 )
 
-const io = require("socket.io")(3001, {
+
+// Use CORS middleware
+app.use(cors({
+  origin: ["https://google-docs-clone-6dgl.vercel.app", "https://google-docs-clone-pied.vercel.app"],
+  methods: ["GET", "POST"],
+  credentials: true // allow credentials if necessary
+}));
+
+const io = new Server(server, {
   cors: {
-    origin: ["https://google-docs-clone-6dgl.vercel.app","https://google-docs-clone-pied.vercel.app"],
+    origin: ["https://google-docs-clone-6dgl.vercel.app", "https://google-docs-clone-pied.vercel.app"],
     methods: ["GET", "POST"],
-  },
-})
+    credentials: true // allow credentials if necessary
+  }
+});
+
+io.on("connection", (socket) => {
+  console.log("New connection established");
+  // Your socket.io logic here
+});
+
+server.listen(3001, () => {
+  console.log("Server is running on port 3001");
+});
 
 const defaultValue = ""
 
