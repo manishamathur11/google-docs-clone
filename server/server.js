@@ -13,7 +13,7 @@ mongoose.connect(
 
 const io = require("socket.io")(3001, {
   cors: {
-    origin: "https://google-docs-clone-6dgl.vercel.app",
+    origin: ["https://google-docs-clone-6dgl.vercel.app","https://google-docs-clone-pied.vercel.app"],
     methods: ["GET", "POST"],
   },
 })
