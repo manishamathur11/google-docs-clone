@@ -1,12 +1,15 @@
 const mongoose = require("mongoose")
 const Document = require("./Document")
 
-mongoose.connect("mongodb://localhost/google-docs-clone", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-})
+mongoose.connect(
+  "mongodb+srv://manisha:1234@cluster0.xvjx3my.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  }
+)
 
 const io = require("socket.io")(3001, {
   cors: {
