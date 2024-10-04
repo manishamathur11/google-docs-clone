@@ -20,14 +20,14 @@ mongoose.connect(
 
 // Use CORS middleware
 app.use(cors({
-  origin: ["https://google-docs-clone-6dgl.vercel.app", "https://google-docs-clone-pied.vercel.app"],
+  origin: ["https://google-docs-clone-6dgl.vercel.app"],
   methods: ["GET", "POST"],
   credentials: true // allow credentials if necessary
 }));
 
 const io = new Server(server, {
   cors: {
-    origin: ["https://google-docs-clone-6dgl.vercel.app", "https://google-docs-clone-pied.vercel.app"],
+    origin: ["https://google-docs-clone-6dgl.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true // allow credentials if necessary
   }
